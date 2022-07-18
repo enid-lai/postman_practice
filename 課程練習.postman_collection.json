@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "29902c87-3f23-43bc-aa58-7049fb0d4363",
+		"name": "課程練習",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18941303"
+	},
+	"item": [
+		{
+			"name": "在數組上斷言",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"let manufacturer;",
+							"",
+							"for (let filter of jsonData.filters){",
+							"    if (filter.name == \"MANUFACTURER\"){",
+							"        manufacturer = filter;",
+							"    }",
+							"}",
+							"",
+							"pm.test(\"檢查MANUFACTURER資料是否符合預期\", function () {",
+							"    pm.expect(manufacturer.name).to.eql(\"MANUFACTURER\");",
+							"    console.log(manufacturer);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.mocky.io/v2/5ab350d62f00005a00ca3663",
+					"protocol": "http",
+					"host": [
+						"www",
+						"mocky",
+						"io"
+					],
+					"path": [
+						"v2",
+						"5ab350d62f00005a00ca3663"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Passing Postman",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains parans\", function () {",
+							"    let data = pm.response.json();",
+							"    console.log(data.args);",
+							"    pm.expect(data.name).to.eql(\"Passing Postman collection\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.postman.com/collections/f36406f34fcc7d4e0502",
+					"protocol": "https",
+					"host": [
+						"www",
+						"postman",
+						"com"
+					],
+					"path": [
+						"collections",
+						"f36406f34fcc7d4e0502"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get url",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
